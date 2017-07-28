@@ -7,11 +7,11 @@ import { AboutPage } from '../pages/about/about';
 import { ContactPage } from '../pages/contact/contact';
 import { HomePage } from '../pages/home/home';
 import { TabsPage } from '../pages/tabs/tabs';
+import { TodoEditPage } from '../pages/home/todo-edit';
 
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
 
-import { TodoDoneFilter } from '../pages/home/todo-done-filter';
 
 @NgModule({
   declarations: [
@@ -20,7 +20,7 @@ import { TodoDoneFilter } from '../pages/home/todo-done-filter';
     ContactPage,
     HomePage,
     TabsPage,
-    TodoDoneFilter
+    TodoEditPage
   ],
   imports: [
     BrowserModule,
@@ -32,7 +32,8 @@ import { TodoDoneFilter } from '../pages/home/todo-done-filter';
     AboutPage,
     ContactPage,
     HomePage,
-    TabsPage
+    TabsPage,
+    TodoEditPage
   ],
   providers: [
     StatusBar,

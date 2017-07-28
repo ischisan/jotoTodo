@@ -15,12 +15,21 @@
 
     <ion-item *ngFor="let todo of showTodoList()">
       <ion-avatar item-start (click)="toggleTodoDone(todo)">
-        <button ion-fab mini [color]="!todo.done ? 'light' : 'blue'"><ion-icon name="checkmark"></ion-icon></button>
+        <button ion-fab mini [color]="!todo.done ? 'light' : 'blue'">
+          <ion-icon name="checkmark"></ion-icon>
+        </button>
       </ion-avatar>
-      <h2>{{ todo.title }}</h2>
-      <p>(Due: {{ todo.dueDate | date }})</p>
-      <p>{{ todo.description }}</p>
+      
+      <span (click)="showModal(todo)">
+        <h2>{{ todo.title }}</h2>
+        <p>(Due: {{ todo.dueDate | date }})</p>
+        <p>{{ todo.description }}</p>
+      </span>
     </ion-item>
   </ion-list>
+  
+  <ion-fab right bottom>
+    <button ion-fab color="danger" (click)="addNewTodo()"><ion-icon name="add"></ion-icon></button>
+  </ion-fab>
 
 </ion-content>
