@@ -3,7 +3,12 @@ import { Component, } from '@angular/core';
 import { Todo } from '../../model/todo';
 
 @Component({
-	templateUrl: "./todo-edit.html"
+	templateUrl: "./todo-edit.html",
+	styles: [`
+		.submit-button {
+			margin: 15px;
+		}
+	`]
 })
 export class TodoEditPage {
 	
