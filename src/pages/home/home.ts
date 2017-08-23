@@ -49,6 +49,12 @@ export class HomePage {
   	let todoToToggle = this.todos.find(findTodo => todo === findTodo);
   	if(todoToToggle.done) todoToToggle.done = false;
   	else todoToToggle.done = true;
+    
+    this.todoService.saveTodo(todoToToggle).subscribe(
+      data => {},
+      error => { alert("Saving failed"); },
+      () => {}
+    );
   }
 
   showModal(todo : Todo) {

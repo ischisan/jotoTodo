@@ -32,7 +32,7 @@
 
 		
 		<button class="submit-button" ion-button type="submit" block>Save Todo</button>
-		<button class="submit-button" ion-button type="button" color="danger" (click)="deleteTodo()" block>Delete Todo</button>
+		<button *ngIf="todo.id != undefined" class="submit-button" ion-button type="button" color="danger" (click)="deleteTodo()" block>Delete Todo</button>
 		
 	</form>
 
