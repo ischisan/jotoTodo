@@ -1,6 +1,6 @@
 {
   "name": "jotoTodo",
-  "app_id": "",
+  "app_id": "2f2ecb5a",
   "type": "ionic-angular",
   "integrations": {
     "cordova": {}
