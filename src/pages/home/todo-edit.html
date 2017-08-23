@@ -1,6 +1,6 @@
 <ion-header>
 	<ion-toolbar>
-		<ion-title>Edit Todo: {{ todo.title }}</ion-title>
+		<ion-title>Edit Todo: {{ todo.title }}</ion-title>	
 		<ion-buttons start>
 	      <button ion-button (click)="dismiss()">
 	        <span ion-text color="primary" showWhen="ios">Cancel</span>
@@ -25,15 +25,13 @@
 		
 		<ion-item>
 			<ion-label floating>Due date</ion-label>
-			<ion-datetime [(ngModel)]="dueDateString" displayFormat="DD.MM.YYYY" name="dueDate"></ion-datetime>
+			<ion-datetime [(ngModel)]="dueDateString" pickerFormat="DD.MM.YYYY" displayFormat="DD.MM.YYYY" name="dueDate"></ion-datetime>
 		</ion-item>
 
 		
 		<button class="submit-button" ion-button type="submit" block>Save Todo</button>
 
 		
-
-
 	</form>
 
 

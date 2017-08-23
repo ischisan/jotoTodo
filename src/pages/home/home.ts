@@ -2,6 +2,8 @@ import { Component } from '@angular/core';
 import { NavController, ModalController } from 'ionic-angular';
 import { Todo } from '../../model/todo';
 import { TodoEditPage } from './todo-edit';
+import { TodoServiceProvider } from '../../providers/todo-service/todo-service';
+
 
 @Component({
   selector: 'page-home',
@@ -19,36 +21,23 @@ export class HomePage {
   showFinished : boolean = false;
 
 
-  todos: Todo[] = [
-  	{
-  		id: 1,
-      title: 'Bier kaufen',
-  		description: 'Das Bier wird langsam leer.',
-  		dueDate: new Date('2017-08-01'),
-  		done: true
-  	},
-  	{
-  		id: 2,
-      title: 'Sushi bestellen',
-  		description: 'Wir haben heute keine Zeit zu kochen.',
-  		dueDate: new Date('2017-09-01'),
-  		done: true
-  	},
-  	{
-  		id: 3,
-      title: 'Kasten entsorgen',
-  		description: 'Heute wird der alte Kasten abgeholt.',
-  		dueDate: new Date('2017-10-01'),
-  		done: false
-  	}
-  ];
+  todos: Todo[] = [];
+  
 
-  constructor(public navCtrl: NavController, public modalController: ModalController) {}
+  constructor(public navCtrl: NavController, public modalController: ModalController, public todoService : TodoServiceProvider ) {
+      todoService.getTodos().subscribe(
+        data => { this.todos = data; },
+        error => alert("Did not work!"),
+        () => console.log(this.todos)
+      );
+  }
 
 
   showTodoList() {
-  	if(this.showFinished) return this.todos;
-  	else return this.todos.filter(todo => todo.done === false)
+  	
+    if(this.showFinished) return this.todos;
+  	else return this.todos.filter(todo => todo.done === false);
+    
   }
 
   showFinishedChanged(newState : boolean) {
@@ -69,14 +58,16 @@ export class HomePage {
 
   addNewTodo() {
     let newTodo: Todo = new Todo();
-    newTodo.dueDate = new Date();
-    newTodo.id = 99;
+    
     newTodo.done = false;
-
-    this.todos.push(newTodo);
-    console.log(newTodo);
+    let newDate = new Date();
+    newTodo.dueDate = newDate.getTime()
+    
+    
     let addTodoEditModal = this.modalController.create(TodoEditPage, {"todo": newTodo});
     addTodoEditModal.present();
   }
+
+
 
 }

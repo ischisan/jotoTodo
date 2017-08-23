@@ -6,7 +6,7 @@ import { NavController } from 'ionic-angular';
   templateUrl: 'about.html',
   styles: [`
 		.about-card {
-			max-width: 600px;
+			max-width: 300px;
 			text-align: center;
 		}
   `]

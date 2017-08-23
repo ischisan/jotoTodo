@@ -1,7 +1,7 @@
 export class Todo {
-	id: number;
+	id: string;
 	title: string;
 	description: string;
-	dueDate: Date;
+	dueDate: number;
 	done: boolean;
 }
