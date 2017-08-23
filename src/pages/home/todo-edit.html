@@ -13,6 +13,8 @@
 <ion-content>
 	<form (ngSubmit)="submitForm()">
 		
+		<ion-input type="hidden" [(ngModel)]="todo.id" name="id"></ion-input>
+
 		<ion-item>
 			<ion-label floating required>Title</ion-label>
 			<ion-input type="text" [(ngModel)]="todo.title" name="title"></ion-input>
@@ -30,7 +32,7 @@
 
 		
 		<button class="submit-button" ion-button type="submit" block>Save Todo</button>
-
+		<button class="submit-button" ion-button type="button" color="danger" (click)="deleteTodo()" block>Delete Todo</button>
 		
 	</form>
 

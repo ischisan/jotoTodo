@@ -26,7 +26,7 @@ export class TodoEditPage {
 		let tzOffset = new Date().getTimezoneOffset();
 		
 		this.dueDateString = new Date(this.todo.dueDate - tzOffset*60*1000).toISOString().slice(0,10);
-		console.log("DateString: "+this.dueDateString);
+		if(this.todo != undefined) console.log("Edit Object with ID "+this.todo.id);
 	}
 
 	submitForm() {
@@ -36,23 +36,33 @@ export class TodoEditPage {
 		let response;
 
 		console.log("todo-id is "+this.todo.id);
-		if(this.todo.id == null) response = this.todoService.addTodo(this.todo);
-		else response = this.todoService.saveTodo(this.todo);
+		let action;
+		if(this.todo.id == null) { response = this.todoService.addTodo(this.todo); action = "add"; }
+		else { response = this.todoService.saveTodo(this.todo); action="save"; }
 
 		response.subscribe(
-			data => { console.log("Got Data:"); console.log(data); this.todo = data},
+			data => { this.todo = data; console.log("this.todo:"); console.log(this.todo); },
 			error => { alert("There was an error submitting the todo to server..."); },
-			() => { console.log("done sending to server"); }
+			() => { 
+				console.log("Return from submit with action: "+action+"; todo-id: "+this.todo.id);
+				this.viewController.dismiss({action: action, todo: this.todo});
+			 }
 		);
-
-		this.viewController.dismiss(this.todo);
-
 	}
 
-	dismiss() {
-		this.viewController.dismiss();
-	}
+	deleteTodo() {
+    	this.todoService.deleteTodo(this.todo).subscribe(
+    		data => { console.log("deleted todo: "+data); },
+    		error => { alert("deleting todo did not work..."); },
+    		() => { 
+    			console.log("finished deleting todo"); 
+    			this.viewController.dismiss({ action: "delete", todo: this.todo});
+    		}
+    	);
+  	}	
 
-	
+  	dismiss() {
+  		this.viewController.dismiss();
+  	}
 
 }

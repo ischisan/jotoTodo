@@ -53,6 +53,10 @@ export class HomePage {
 
   showModal(todo : Todo) {
     let todoEditModal = this.modalController.create(TodoEditPage, {"todo": todo});
+    todoEditModal.onDidDismiss(data => {
+      if(data != undefined && data.action === "delete") this.todos = this.todos.filter(findTodo => findTodo.id !== data.todo.id);
+      console.log("action delete detected...");
+    });
     todoEditModal.present();
   }
 
@@ -65,6 +69,9 @@ export class HomePage {
     
     
     let addTodoEditModal = this.modalController.create(TodoEditPage, {"todo": newTodo});
+    addTodoEditModal.onDidDismiss(data => {
+      if(data != undefined && data.action == "add" && data.todo != undefined) this.todos.push(data.todo);
+    });
     addTodoEditModal.present();
   }
 

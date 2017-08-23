@@ -37,5 +37,10 @@ export class TodoServiceProvider {
   	return this.http.put(serviceUrl+todo.id, JSON.stringify(todo), {headers: this.headers}).map(res => res.json());
   }
 
+  deleteTodo(todo: Todo) {
+  	return this.http.delete(serviceUrl+todo.id, {headers: this.headers}).map(res => res.json());
+  }
+
+  
 
 }
