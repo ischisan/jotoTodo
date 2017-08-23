@@ -55,7 +55,6 @@ export class HomePage {
     let todoEditModal = this.modalController.create(TodoEditPage, {"todo": todo});
     todoEditModal.onDidDismiss(data => {
       if(data != undefined && data.action === "delete") this.todos = this.todos.filter(findTodo => findTodo.id !== data.todo.id);
-      console.log("action delete detected...");
     });
     todoEditModal.present();
   }
